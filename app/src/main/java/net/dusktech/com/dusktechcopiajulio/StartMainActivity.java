@@ -174,7 +174,7 @@ public class StartMainActivity extends AppCompatActivity {
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-
+        //Github test
 
         mGoogleButton.setOnClickListener(new View.OnClickListener() {
             @Override
