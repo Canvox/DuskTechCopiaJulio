@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="net.dusktech.com.dusktechcopiajulio.UnlockableActivity">
+
+
+    <ImageButton
+        android:id="@+id/lesson1"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="19dp"
+        android:text="Lesson 1"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:id="@+id/lesson2"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="48dp"
+        android:text="Lesson 2"
+        android:layout_below="@+id/lesson1"
+        android:layout_alignLeft="@+id/lesson1"
+        android:layout_alignStart="@+id/lesson1" />
+
+    <ImageButton
+        android:id="@+id/lesson3"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="53dp"
+        android:text="Lesson 3"
+        android:layout_below="@+id/lesson2"
+        android:layout_alignLeft="@+id/lesson2"
+        android:layout_alignStart="@+id/lesson2" />
+
+    <ImageButton
+        android:id="@+id/lesson4"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="58dp"
+        android:text="Lesson 4"
+        android:layout_below="@+id/lesson3"
+        android:layout_alignLeft="@+id/lesson3"
+        android:layout_alignStart="@+id/lesson3" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="Back" />
+
+    <TextView
+        android:id="@+id/highScoreView"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:textSize="25dp"
+        android:text="TextView"
+        android:layout_marginBottom="11dp"
+        android:layout_above="@+id/scoreView"
+        android:layout_alignLeft="@+id/scoreView"
+        android:layout_alignStart="@+id/scoreView" />
+
+    <TextView
+        android:id="@+id/scoreView"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/lesson4"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/lesson4"
+        android:text="TextView"
+        android:textSize="25dp" />
+
+</RelativeLayout>

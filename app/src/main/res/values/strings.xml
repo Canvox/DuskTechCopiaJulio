@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DuskTechCopiaJulio</string>
+    <string name="question">Number of Question / Score ?</string>
+    <string name="guess_country">Question Goes Here</string>
+</resources>

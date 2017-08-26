@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="net.dusktech.com.dusktechcopiajulio.StartMainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:id="@+id/relativeLayout"
+        android:layout_below="@+id/saveButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="48dp">
+
+        <TextView
+            android:id="@+id/score_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="High Score"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="0"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="Play"
+        android:background="@color/blueVox"
+        android:padding="8dp"
+        android:id="@+id/play"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/logoutButton"
+        android:layout_alignLeft="@+id/saveButton"
+        android:layout_alignStart="@+id/saveButton" />
+
+    <com.google.android.gms.common.SignInButton
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/googleButton"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/play"
+        android:layout_alignStart="@+id/play">
+    </com.google.android.gms.common.SignInButton>
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/play"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/play"
+        android:layout_marginTop="13dp"
+        android:text="Logout" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1.0"
+        android:layout_marginBottom="65dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout">
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/saveButton"
+        android:background="@color/redVox"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/googleButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:text="Save Score" />
+
+    <TextView
+        android:id="@+id/tempScoreView"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:text="Score" android:textSize="20sp"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_alignLeft="@+id/saveButton"
+        android:layout_alignStart="@+id/saveButton" />
+
+    <ProgressBar
+        android:id="@+id/progressBar3"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:max="100"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_alignTop="@+id/progressBar3"
+        android:layout_alignLeft="@+id/tempScoreView"
+        android:layout_alignStart="@+id/tempScoreView" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:layout_alignTop="@+id/progressBar3"
+        android:layout_alignRight="@+id/tempScoreView"
+        android:layout_alignEnd="@+id/tempScoreView" />
+
+</RelativeLayout>
+

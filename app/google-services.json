@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "47903639600",
+    "firebase_url": "https://dusktechcopiajulio.firebaseio.com",
+    "project_id": "dusktechcopiajulio",
+    "storage_bucket": "dusktechcopiajulio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47903639600:android:e7df4646c23ec7a4",
+        "android_client_info": {
+          "package_name": "net.dusktech.com.dusktechcopiajulio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47903639600-891k8dfe5bmlaqdah7se14t7s4mg84nq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.dusktech.com.dusktechcopiajulio",
+            "certificate_hash": "9deb7edf057eef0884db74702ba30836e2237183"
+          }
+        },
+        {
+          "client_id": "47903639600-65cbhsio7vh9cpo6h9ip2urg7ipnsvn0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYzHaJyUfSYMn9UyAVuCIaYticxn8JHcU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47903639600-65cbhsio7vh9cpo6h9ip2urg7ipnsvn0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
