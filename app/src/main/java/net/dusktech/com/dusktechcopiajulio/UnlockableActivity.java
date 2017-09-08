@@ -12,11 +12,11 @@ public class UnlockableActivity extends AppCompatActivity {
 
     private ImageButton lesson1Button, lesson2Button, lesson3Button, lesson4Button;
 
-    private TextView mScoreView, mHighScoreView;
+    private TextView mScoreView, mTestView;
 
     private Button backButton;
 
-    private int mscoreUnlockable, mscoreMain, mTempScoreUnlockable, mContadorUnlockable;
+    private int mscoreUnlockable, mHighscoreMain, finalScore, mContadorUnlockable;
 
     private int lessonNumber, tempLessonNumber;
 
@@ -38,36 +38,19 @@ public class UnlockableActivity extends AppCompatActivity {
         lesson4Button = (ImageButton) findViewById(R.id.lesson4);
 
         mScoreView = (TextView) findViewById(R.id.scoreView);
-        mHighScoreView = (TextView) findViewById(R.id.highScoreView);
 
         backButton = (Button) findViewById(R.id.back);
-
-        /* Ahora el score se va a guardar por leccion y se le envia un score total a StartMainActivity */
-        //Intent intent = getIntent();
-        //mscoreUnlockable = intent.getIntExtra("passedScoreMain",0);
 
         lesson1Button.setImageResource(R.drawable.unlockedlesson);
 
         Intent intent = getIntent();
-        mscoreMain = intent.getIntExtra("passedScoreMain", 0);
 
         mscoreUnlockable = intent.getIntExtra("passedScoreImage",0);
-
-        mTempScoreUnlockable = intent.getIntExtra("passedTempScoreImage", 0);
-
         lessonNumber = intent.getIntExtra("passedLessonNumberUnlockable", 0);
-
         mContadorUnlockable = intent.getIntExtra("passedContadorImage",0);
 
 
-        if (mscoreMain > mscoreUnlockable){
-            mHighScoreView.setText("Highscore: " + mscoreMain);
-        }else{
-            mHighScoreView.setText("Highscore: " + mscoreUnlockable);
-        }
-
-
-        mScoreView.setText("Score: " + mTempScoreUnlockable);
+        mScoreView.setText("Score: " + mscoreUnlockable);
 
         /*Test para probar el cambio de imagenes (Si funciona)
         if (mscoreUnlockable >= 4){
@@ -131,7 +114,6 @@ public class UnlockableActivity extends AppCompatActivity {
                 //lessonNumber++;
                 Intent intent = new Intent(UnlockableActivity.this, StartMainActivity.class);
                 intent.putExtra("passedTotalScoreUnlockable", mscoreUnlockable);
-                intent.putExtra("passedTempScoreUnlockable", mTempScoreUnlockable);
                 intent.putExtra("passedLessonNumberUnlockable", lessonNumber);
                 startActivity(intent);
             }
@@ -141,12 +123,7 @@ public class UnlockableActivity extends AppCompatActivity {
 
     public void launchActivity(){
         Intent intent = new Intent(UnlockableActivity.this, ImageActivity.class);
-        if (mscoreMain > mscoreUnlockable){
-            intent.putExtra("passedTotalScoreUnlockable", mscoreMain);
-        }else{
-            intent.putExtra("passedTotalScoreUnlockable", mscoreUnlockable);
-        }
-        intent.putExtra("passedTempScoreUnlockable", mTempScoreUnlockable);
+        intent.putExtra("passedTotalScoreUnlockable", mscoreUnlockable);
         //Igual hay que enviarselo a Image porque la Activity se reinicia
         intent.putExtra("passedLessonNumberUnlockable", lessonNumber);
         intent.putExtra("passedContadorUnlockable", mContadorUnlockable);

@@ -19,7 +19,7 @@
         <activity android:name=".StartMainActivity" />
         <activity android:name=".ImageActivity" />
         <activity android:name=".QuizActivity" />
-        <activity android:name=".UnlockableActivity"></activity>
+        <activity android:name=".UnlockableActivity"/>
     </application>
 
 </manifest>

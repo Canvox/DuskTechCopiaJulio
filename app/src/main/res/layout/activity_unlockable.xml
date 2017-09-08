@@ -56,17 +56,6 @@
         android:text="Back" />
 
     <TextView
-        android:id="@+id/highScoreView"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:textSize="25dp"
-        android:text="TextView"
-        android:layout_marginBottom="11dp"
-        android:layout_above="@+id/scoreView"
-        android:layout_alignLeft="@+id/scoreView"
-        android:layout_alignStart="@+id/scoreView" />
-
-    <TextView
         android:id="@+id/scoreView"
         android:layout_width="200dp"
         android:layout_height="50dp"
@@ -75,5 +64,6 @@
         android:layout_alignStart="@+id/lesson4"
         android:text="TextView"
         android:textSize="25dp" />
+
 
 </RelativeLayout>

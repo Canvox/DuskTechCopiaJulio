@@ -93,21 +93,22 @@
         android:id="@+id/tempScoreView"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_marginTop="15dp"
         android:text="Score" android:textSize="20sp"
-        android:layout_below="@+id/relativeLayout"
+        android:layout_above="@+id/linearLayout"
         android:layout_alignLeft="@+id/saveButton"
-        android:layout_alignStart="@+id/saveButton" />
+        android:layout_alignStart="@+id/saveButton"
+        android:layout_marginBottom="20dp" />
 
     <ProgressBar
         android:id="@+id/progressBar3"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/linearLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"
-        android:max="100"/>
+        android:max="100"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginBottom="13dp" />
 
     <TextView
         android:id="@+id/textView"

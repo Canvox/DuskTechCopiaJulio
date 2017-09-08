@@ -41,6 +41,8 @@ import java.util.ArrayList;
 
 public class StartMainActivity extends AppCompatActivity {
 
+    String tag = "Lifecycle";
+
     private ArrayList scores;
 
     private Button playButton;
@@ -49,9 +51,11 @@ public class StartMainActivity extends AppCompatActivity {
 
     private TextView mScoreView, mTempScoreView;
 
-    private int testScore, tempTestScore, lessonNumberMain;
+    private int testScore, totalScore, lessonNumberMain;
 
     private int realScore;
+
+    public int contadorScore;
 
     private static final int RC_SIGN_IN = 1;
 
@@ -72,6 +76,8 @@ public class StartMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_main);
 
+        Log.d(tag, "In the onCreate() event");
+
         playButton = (Button) findViewById(R.id.play);
 
         mScoreView = (TextView)findViewById(R.id.score);
@@ -80,47 +86,7 @@ public class StartMainActivity extends AppCompatActivity {
 
         buttonSave = (Button) findViewById(R.id.saveButton);
 
-        Intent intent = getIntent();
-        testScore = intent.getIntExtra("passedTotalScoreUnlockable",0);
-        tempTestScore = intent.getIntExtra("passedTempScoreUnlockable",0);
-        lessonNumberMain = intent.getIntExtra("passedLessonNumberUnlockable", 0);
-
-        //scores = new ArrayList();
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
-
-        /*ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String value = dataSnapshot.getValue(String.class);
-                realScore = Integer.parseInt(value);
-                System.out.println(snapshot.getValue());
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });*/
-
-
-        /*Shared Preferences aun no sirve entonces el testScoreBackup tampoco
-        *
-        SharedPreferences prefs = getSharedPreferences("MAIN", Context.MODE_PRIVATE);
-
-        prefs.edit().putInt("score", testScore).apply();
-
-        testScoreBackup = prefs.getInt("score", 0);
-
-        if(testScoreBackup > testScore){
-
-            testScore = testScoreBackup;
-            prefs.edit().putInt("score", testScore).apply();
-        }*/
-
-        //mConditionRef.setValue(testScoreDB);
-        //mConditionRef.setValue(testScore);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -139,24 +105,41 @@ public class StartMainActivity extends AppCompatActivity {
             }
         };
 
-        FirebaseUser user = mAuth.getCurrentUser();
 
-        mDatabase.child(user.getUid()).child("scores").child("0").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                System.out.println("-----------------" + snapshot.getValue());
-                realScore = Integer.valueOf(snapshot.getValue().toString());
-                System.out.println("***************" + String.valueOf(realScore));
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
+        Intent intent = getIntent();
 
+        //contadorScore = intent.getIntExtra("contadorScore",0);
 
+        //getScoreFirebase();
+        //Aqui puede estar el problema porque lo podria meter en el metodo de la base de datos
+        testScore = intent.getIntExtra("passedTotalScoreUnlockable",0);
+        contadorScore = intent.getIntExtra("passedTotalScoreUnlockable",0);
+        //totalScore = testScore + getScoreFirebase();
+        System.out.println("RealScore---------------" + String.valueOf(realScore));
+        System.out.println("TestScore***************" + String.valueOf(testScore));
+        System.out.println("TotalScore---------------" + String.valueOf(totalScore));
+
+        lessonNumberMain = intent.getIntExtra("passedLessonNumberUnlockable", 0);
 
         mGoogleButton = (SignInButton) findViewById(R.id.googleButton);
         mLogoutButton = (Button) findViewById(R.id.logoutButton);
+
+
+
+        //Arreglar este metodo
+
+        //SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+
+        //contadorScore = sharedPreferences.getInt("contador",0);
+
+        System.out.println("---------------Contador:" + String.valueOf(contadorScore));
+
+        //contadorScore = ((AndroidApplication) getApplicationContext()).contador;
+
+        System.out.println("++++++++++++++Contador:" + String.valueOf(contadorScore));
+
+        getScoreFirebase();
+
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -195,7 +178,8 @@ public class StartMainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 /*startActivity(new Intent(getApplicationContext(), ImageActivity.class));*/
                 Intent intent = new Intent(StartMainActivity.this, UnlockableActivity.class);
-                intent.putExtra("passedScoreMain", testScore);
+                intent.putExtra("passedHighscoreMain", testScore);
+                //saveUserInformation();
                 startActivity(intent);
             }
         });
@@ -203,19 +187,46 @@ public class StartMainActivity extends AppCompatActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateScore(realScore);
-                updateTempScore(tempTestScore);
-                saveUserInformation();
+                //saveUserInformation();
+                //contadorScore = ((AndroidApplication) getApplicationContext()).contador;
+                //saveInfo(contadorScore);
+
+                //Intent intent = new Intent(StartMainActivity.this, AndroidApplication.class);
+                //intent.putExtra("contadorScore", contadorScore);
+                //updateTempScore(testScore);
+
             }
         });
     }
 
-    @Override
-    protected void onStart() {
+    public void onStart(){
         super.onStart();
-
-        mAuth.addAuthStateListener(mAuthListener);
+        Log.d(tag, "In the onStart() event");
     }
+
+    public void onRestart(){
+        super.onRestart();
+        Log.d(tag, "In the onRestart() event");
+    }
+
+    public void onResume(){
+        super.onResume();
+        Log.d(tag, "In the onResume() event");
+    }
+
+    public void onPause(){
+        super.onPause();
+        Log.d(tag, "In the onPause() event");
+    }public void onStop(){
+        super.onStop();
+        Log.d(tag, "In the onStop() event");
+    }
+
+    public void onDestroy(){
+        super.onDestroy();
+        Log.d(tag, "In the onDestroy() event");
+    }
+
 
 
 
@@ -223,14 +234,13 @@ public class StartMainActivity extends AppCompatActivity {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
-    
+
     public void signOut() {
 
         //Reinicia el Score y TempScore para el Usuario
         testScore = 0;
-        tempTestScore = 0;
         updateScore(testScore);
-        updateTempScore(tempTestScore);
+        updateTempScore(testScore);
 
 
 
@@ -294,8 +304,8 @@ public class StartMainActivity extends AppCompatActivity {
         //String score = Integer.toString(testScore);
 
         ArrayList scores = new ArrayList();
-        scores.add(Integer.toString(testScore));
-        scores.add("Score: " + Integer.toString(tempTestScore));
+        scores.add(Integer.toString(totalScore));
+        scores.add("Score: " + Integer.toString(testScore));
 
         ArrayList informacion = new ArrayList();
         informacion.add("# leccion: " + Integer.toString(lessonNumberMain));
@@ -321,6 +331,72 @@ public class StartMainActivity extends AppCompatActivity {
         Toast.makeText(this, "Information Saved...", Toast.LENGTH_LONG).show();
     }
 
+    public void getScoreFirebase(){
+
+
+            mDatabase = FirebaseDatabase.getInstance().getReference();
+
+            mAuth = FirebaseAuth.getInstance();
+
+            mAuthListener = new FirebaseAuth.AuthStateListener() {
+                @Override
+                public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                    if (user != null) {
+                        // User is signed in
+                        Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    } else {
+                        // User is signed out
+                        Log.d(TAG, "onAuthStateChanged:signed_out");
+                    }
+                    // ...
+                }
+            };
+
+            FirebaseUser user = mAuth.getCurrentUser();
+
+            mDatabase.child(user.getUid()).child("scores").child("0").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot snapshot) {
+                    //System.out.println("-----------------" + snapshot.getValue());
+                    realScore = Integer.valueOf(snapshot.getValue().toString());
+                    System.out.println("RealScore***************" + String.valueOf(realScore));
+                    totalScore = testScore + realScore;
+                    updateScore(totalScore);
+
+                    ArrayList scores = new ArrayList();
+
+                    scores.add(Integer.toString(totalScore));
+                    scores.add("Score: " + Integer.toString(contadorScore));
+
+                    ArrayList informacion = new ArrayList();
+                    informacion.add("# leccion: " + Integer.toString(lessonNumberMain));
+
+
+                    UserInformation userInformation = new UserInformation(scores, informacion);
+                    FirebaseUser user = mAuth.getCurrentUser();
+
+
+                    mDatabase.child(user.getUid()).setValue(userInformation);
+
+
+                    testScore = 0;
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            });
+
+
+        }
+
+        public void saveInfo(int x){
+            SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("contador",x);
+            editor.apply();
+        }
 
 }
 
